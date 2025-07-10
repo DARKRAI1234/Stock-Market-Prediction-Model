@@ -176,9 +176,6 @@ Contributions are welcome! Please:
 - Add tests and update documentation as needed.
 - Submit a pull request with a clear description.
 
-## License
-
-This project is licensed under the MIT License. See `LICENSE` for details.
 
 ## Acknowledgements
 
