@@ -1,0 +1,120 @@
+# Stock Prediction Transformer Configuration
+
+# Model Architecture
+model:
+  input_dim: 31  # 25 original features + 6 sector averages
+  d_model: 128
+  nhead: 4
+  num_encoder_layers: 3
+  dim_feedforward: 256
+  dropout: 0.1
+  sector_embedding_dim: 16
+
+# Data Configuration
+data:
+  window_size: 20
+  prediction_horizon: 5
+  min_history: 1
+  
+  # Feature Configuration
+  original_features:
+    - Open
+    - High
+    - Low
+    - Close
+    - Volume
+    - RSI
+    - MACD
+    - MACD_Signal
+    - UpperBB
+    - LowerBB
+    - BB_Width
+    - ATR
+    - Volume_MA
+    - Volume_Ratio
+    - SMA50
+    - Price_to_SMA50
+    - ROC5
+    - ROC10
+    - ROC20
+    - Stoch_K
+    - Stoch_D
+    - ADX
+    - Volatility
+    - Streak
+    - Return_Volatility_20
+  
+  # Important features for sector averaging
+  important_features:
+    - Close
+    - Volume
+    - RSI
+    - MACD
+    - ATR
+    - Volatility
+
+# Training Configuration
+training:
+  batch_size: 64
+  num_epochs: 25
+  learning_rate: 5e-4
+  weight_decay: 1e-4
+  
+  # Loss weights
+  return_weight: 0.3
+  ranking_weight: 0.7
+  
+  # Optimizer
+  optimizer: AdamW
+  scheduler: CosineAnnealingLR
+  
+  # Training split
+  train_split: 0.8
+  
+  # Data augmentation
+  augment: true
+  augment_probability: 0.5
+  mask_rate_min: 0.1
+  mask_rate_max: 0.2
+  
+  # Gradient clipping
+  gradient_clip_norm: 1.0
+
+# Hardware Configuration
+hardware:
+  num_workers: 4
+  pin_memory: true
+  device: auto  # auto, cuda, cpu
+
+# Paths
+paths:
+  data_dir: "data/processed"
+  output_dir: "outputs"
+  models_dir: "outputs/models"
+  predictions_dir: "outputs/predictions"
+  plots_dir: "outputs/plots"
+
+# Logging
+logging:
+  level: INFO
+  save_logs: true
+  log_dir: "logs"
+
+# Evaluation
+evaluation:
+  metrics:
+    - precision@5
+    - precision@10
+    - precision@20
+    - irr@5
+    - irr@10
+    - irr@20
+    - mrr@5
+    - mrr@10
+    - mrr@20
+    - mae
+    - r2
+  
+  save_predictions: true
+  save_attention: true
+  save_metrics: true

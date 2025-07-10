@@ -1,0 +1,33 @@
+# Core ML Libraries
+torch>=1.12.0
+torchvision>=0.13.0
+numpy>=1.21.0
+pandas>=1.4.0
+scikit-learn>=1.1.0
+
+# Data Processing
+yfinance>=0.1.70
+pandas-datareader>=0.10.0
+ta>=0.10.2
+
+# Visualization
+matplotlib>=3.5.0
+seaborn>=0.11.0
+plotly>=5.0.0
+
+# Configuration
+PyYAML>=6.0
+pyyaml>=6.0
+
+# Progress Bars
+tqdm>=4.64.0
+
+# Jupyter (for notebooks)
+jupyter>=1.0.0
+ipywidgets>=7.6.0
+
+# Utilities
+scipy>=1.8.0
+python-dateutil>=2.8.0
+
+
